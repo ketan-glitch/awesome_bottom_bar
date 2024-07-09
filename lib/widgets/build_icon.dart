@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../tab_item.dart';
 import '../count_style.dart';
+import '../tab_item.dart';
 
 class BuildIcon extends StatelessWidget {
   final TabItem item;
@@ -19,11 +19,17 @@ class BuildIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget icon = Icon(
-      item.icon,
-      size: iconSize,
-      color: iconColor,
-    );
+    Widget icon;
+    if (item.icon is IconData) {
+      icon = Icon(
+        item.icon,
+        size: iconSize,
+        color: iconColor,
+      );
+    } else {
+      icon = item.icon;
+    }
+    ;
     if (item.count is Widget) {
       double sizeBadge = countStyle?.size ?? 18;
 
